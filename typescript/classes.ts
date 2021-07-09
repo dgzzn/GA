@@ -22,3 +22,57 @@ class Data { // precisa declarar o tipo (private/public) e ela já sai direto
 
     }
 }
+
+class Carro {
+    private velocidadeAtual: number = 0
+
+    constructor(
+        public marca: string,
+        public modelo: string,
+        private velocidadeMaxima: number
+    ) { }
+
+    private alterarVelocidade(velocidade: number) {
+        const novaVelocidade = this.velocidadeAtual + velocidade
+        if (novaVelocidade >= 0 && novaVelocidade <= this.velocidadeMaxima) {
+            this.velocidadeAtual = novaVelocidade
+        } else {
+            this.velocidadeAtual = velocidade > 0 ? this.velocidadeMaxima : 0
+        }
+    }
+
+    acelerar() {
+        this.alterarVelocidade(25)    
+    }
+
+    frear() {
+        this.alterarVelocidade(-5)
+    }
+}
+
+const carro = new Carro('Ferrari', 'F250', 340);
+carro.acelerar()
+carro.acelerar()
+carro.acelerar()
+carro.acelerar()
+carro.acelerar()
+carro.frear()
+
+
+//Herança
+
+class Ferrari extends Carro {
+    private turbo = false
+    constructor() {
+        super('Ferrari', 'Maranello', 300)
+    }
+
+    ligarTurbo() {
+        this.turbo = true
+    }
+}
+
+const f1 = new Ferrari()
+f1.acelerar()
+f1.frear()
+f1.ligarTurbo()
